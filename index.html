@@ -136,7 +136,7 @@
         .team-info strong { font-family: var(--font-main); color: var(--cream); font-size: 1rem; }
         .team-info small { color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; font-size: 0.7rem; display: block; margin-top: 4px; }
 
-        /* --- SECCIÓN 3: MARQUEE --- */
+        /* --- MARQUEE --- */
         .clients-section { 
             padding: 60px 0; 
             background: rgba(14, 13, 15, 0.85);
@@ -147,11 +147,6 @@
             width: 100%;
         }
         .marquee-container { width: 100%; overflow: hidden; position: relative; }
-        .marquee-container::before, .marquee-container::after {
-            content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2; pointer-events: none;
-        }
-        .marquee-container::before { left: 0; background: linear-gradient(to right, #0e0d0f, transparent); }
-        .marquee-container::after { right: 0; background: linear-gradient(to left, #0e0d0f, transparent); }
         .marquee-track { display: flex; width: max-content; animation: scroll-track 40s linear infinite; }
         @keyframes scroll-track { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -162,7 +157,7 @@
         .logo-card-slide.dark { background: #2C2C31; border: 1px solid rgba(255,255,255,0.1); }
         .logo-card-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        /* --- SECCIÓN 4: PERFORMANCE CARDS --- */
+        /* --- PERFORMANCE CARDS --- */
         .performance-card {
             background: var(--bg-card);
             border: 1px solid rgba(255,255,255,0.1);
@@ -185,85 +180,135 @@
         }
         .performance-card:hover { border-color: var(--magenta); background: rgba(188, 101, 222, 0.05); }
 
-        /* --- SECCIÓN 5: ESPECIALIDADES --- */
-        .specialty-card {
-            background: linear-gradient(145deg, #1a1520, #0d0d0f);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 40px;
-            border-radius: 20px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        .specialty-card:hover {
-            border-color: var(--violet);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(82, 65, 176, 0.15);
-        }
-        .specialty-card i {
-            font-size: 2.5rem;
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, var(--gold), var(--magenta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .specialty-card h3 { font-size: 1.25rem; margin-bottom: 15px; color: var(--cream); }
-        .specialty-card p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; }
-
-        /* --- SECCIÓN 6: DIAGNÓSTICO (ACTUALIZADA) --- */
-        .diagnostic-grid {
+        /* --- ESPECIALIDADES --- */
+        .ecosystem-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 25px;
+            width: 100%;
+            margin-top: 50px;
+        }
+        .specialty-card {
+            grid-column: span 2;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px 30px;
+            border-radius: 24px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .specialty-card.row-2 { grid-column: span 3; }
+        .specialty-card:hover {
+            border-color: var(--magenta);
+            background: rgba(188, 101, 222, 0.05);
+            transform: translateY(-10px);
+        }
+        .specialty-label {
+            font-family: var(--font-main); font-size: 0.7rem; color: var(--gold);
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+            background: rgba(223, 214, 181, 0.1); padding: 4px 12px; border-radius: 6px;
+        }
+
+        /* --- SECCIÓN 6: INTERROGANTES --- */
+        .strategy-matrix {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             width: 100%;
             margin-top: 50px;
         }
-        .diagnostic-card {
-            background: rgba(22, 21, 23, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-left: 4px solid var(--violet);
+        .matrix-item {
+            background: rgba(22, 21, 23, 0.8);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 30px;
             padding: 40px;
-            border-radius: 0 20px 20px 0;
             transition: var(--transition);
         }
-        .diagnostic-card:hover {
-            background: rgba(82, 65, 176, 0.05);
-            border-left-color: var(--magenta);
-            transform: translateX(10px);
+        .matrix-item:hover { border-color: var(--magenta); transform: translateY(-5px); }
+        .question-list { list-style: none; margin-top: 20px; }
+        .question-list li {
+            font-size: 0.95rem; color: var(--text-dim); margin-bottom: 12px;
+            padding-left: 25px; position: relative;
         }
-        .diag-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .diag-header i { color: var(--magenta); font-size: 1.2rem; }
-        .diag-header h3 { font-size: 1.4rem; color: var(--gold); }
-        .diag-content ul { list-style: none; }
-        .diag-content li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 12px;
-            color: var(--cream);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        .diag-content li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--magenta);
+        .question-list li::before {
+            content: "\f059"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; left: 0; color: var(--magenta);
         }
 
+        /* --- SECCIÓN 7: PROPUESTA DE CONSULTORÍA (NUEVA) --- */
+        .proposal-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            width: 100%;
+            margin-top: 50px;
+        }
+        .proposal-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 32px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: var(--transition);
+        }
+        .proposal-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .proposal-card h3 { font-size: 1.8rem; color: var(--gold); margin-bottom: 10px; }
+        .proposal-card p { font-size: 1.15rem; color: var(--cream); opacity: 0.9; line-height: 1.7; }
+        
+        /* MEGA BOTONES DE CONTACTO */
+        .contact-cta-area {
+            width: 100%;
+            text-align: center;
+            margin-top: 100px;
+            padding: 80px 40px;
+            background: radial-gradient(circle at center, rgba(188, 101, 222, 0.08) 0%, transparent 70%);
+            border-radius: 50px;
+        }
+        .mega-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .mega-btn {
+            text-decoration: none;
+            padding: 40px 20px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(22, 21, 23, 0.6);
+            backdrop-filter: blur(10px);
+        }
+        .mega-btn i { font-size: 3rem; margin-bottom: 10px; }
+        .mega-btn span { font-family: var(--font-main); font-weight: 700; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .mega-btn small { font-size: 0.8rem; opacity: 0.6; text-transform: none; font-weight: 400; }
+
+        /* Estilos específicos por botón */
+        .btn-whatsapp { color: #25D366; }
+        .btn-whatsapp:hover { background: rgba(37, 211, 102, 0.1); border-color: #25D366; box-shadow: 0 0 30px rgba(37, 211, 102, 0.2); transform: scale(1.05); }
+        
+        .btn-instagram { color: var(--magenta); }
+        .btn-instagram:hover { background: rgba(188, 101, 222, 0.1); border-color: var(--magenta); box-shadow: 0 0 30px rgba(188, 101, 222, 0.2); transform: scale(1.05); }
+        
+        .btn-web { color: var(--gold); }
+        .btn-web:hover { background: rgba(223, 214, 181, 0.1); border-color: var(--gold); box-shadow: 0 0 30px rgba(223, 214, 181, 0.2); transform: scale(1.05); }
+
         @media (max-width: 1024px) {
-            .team-grid, .diagnostic-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-grid, .strategy-matrix, .proposal-container, .mega-buttons-grid { grid-template-columns: 1fr; }
             .display-title { font-size: 2.8rem; }
-        }
-        @media (max-width: 768px) {
-            .diagnostic-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 600px) {
-            .team-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -279,7 +324,7 @@
                 <img src="https://jerarquicos.com/wp-content/uploads/2024/01/jerarquicos-logo.svg" alt="Jerárquicos" style="height: 50px;">
             </div>
             <div class="bubble-container">
-                <div class="status-bubble"><span>Consultoría</span></div>
+                <div class="status-bubble"><span>Consultoría Estratégica</span></div>
             </div>
             <h1 class="display-title">Cómo vender planes de salud en <span class="gradient-text">canales digitales</span> sin morir en el intento.</h1>
             <div class="hero-links">
@@ -291,239 +336,83 @@
 
     <section class="section-wrapper">
         <div class="full-width">
+            <div class="bubble-container"><div class="status-bubble"><span>Diagnóstico Organizacional</span></div></div>
+            <h2 class="display-title">Interrogantes que <span class="gradient-text">Jerárquicos</span> debe responder.</h2>
+        </div>
+        <div class="strategy-matrix">
+            <div class="matrix-item">
+                <h3>Arquitectura & Talento</h3>
+                <ul class="question-list">
+                    <li>¿Cómo construimos campañas de publicidad efectivas de generación de leads?</li>
+                    <li>¿Tenemos el recurso humano y de software necesario?</li>
+                    <li>¿Debemos contratar o terciarizar en un proveedor experto?</li>
+                </ul>
+            </div>
+            <div class="matrix-item">
+                <h3>Tecnología & Riesgo</h3>
+                <ul class="question-list">
+                    <li>¿Software único o varios proveedores SaaS?</li>
+                    <li>Si el software lo provee un tercero: ¿Qué riesgos asumimos?</li>
+                    <li>¿El equipo comercial está apto para la sinergia con Marketing?</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-wrapper" id="propuesta" style="border-bottom: none; padding-bottom: 50px;">
+        <div class="full-width">
             <div class="bubble-container">
                 <div class="status-bubble" style="border-color: var(--gold); background: rgba(223, 214, 181, 0.1);">
-                    <span style="color: var(--gold);">equipo bi.lab</span>
+                    <span style="color: var(--gold);">El Camino</span>
                 </div>
             </div>
-            <h2 class="display-title" style="font-size: 3rem;">Somos expertos en <span class="gradient-text">Performance.</span></h2>
-            <p style="font-size: 1.2rem; max-width: 900px; color: var(--cream); font-weight: 500;">
-                bi.lab es una empresa de marketing de performance. Trabajamos únicamente en la generación de leads.
-            </p>
-            <p style="font-size: 1.1rem; color: var(--text-dim); border-left: 2px solid var(--magenta); padding-left: 20px; margin-top: 15px; max-width: 800px;">
-                Tenemos una cartera activa de +25 clientes en Argentina, Uruguay y México.
-            </p>
+            <h2 class="display-title">Nuestra propuesta de <span class="gradient-text">consultoría.</span></h2>
         </div>
 
-        <div class="team-grid">
-            <div class="kinetic-card">
-                <div class="team-img-box"><img src="https://i.ibb.co/PLT5Zt9/10042025-DSC-9515.jpg" class="team-img"></div>
-                <div class="team-info"><strong>Bautista Veaute</strong><small>Director de Datos e IA</small></div>
+        <div class="proposal-container">
+            <div class="proposal-card">
+                <div class="specialty-label">Visión Estratégica</div>
+                <h3>Perspectiva para la Decisión</h3>
+                <p>Nuestra consultoría pretende responder cada interrogante planteado, brindando una perspectiva clara a las personas con capacidad de decisión en <strong>Jerárquicos</strong>.</p>
+                <p>El objetivo es dotarlos de <strong>criterio global</strong> para liderar la venta de productos y servicios a través de ecosistemas digitales de alto rendimiento.</p>
             </div>
-            <div class="kinetic-card">
-                <div class="team-img-box"><img src="https://i.ibb.co/0pCPs90v/DSC-1606-1.jpg" class="team-img"></div>
-                <div class="team-info"><strong>Manuel Álvarez</strong><small>Director de Anuncios</small></div>
-            </div>
-            <div class="kinetic-card">
-                <div class="team-img-box"><img src="https://i.ibb.co/jk4JcKzM/IMG-6107.jpg" class="team-img"></div>
-                <div class="team-info"><strong>Tomás Rinaudo</strong><small>Coordinador de Equipos</small></div>
-            </div>
-            <div class="kinetic-card">
-                <div class="team-img-box"><img src="https://media.licdn.com/dms/image/v2/D4E03AQGcf02bA0iWeg/profile-displayphoto-crop_800_800/B4EZoHPpChGUAI-/0/1761058132852?e=1769644800&v=beta&t=RrIlHLog82hN9F_Kw5ZQ2zWuJ6A3s3KQ5V0UDG_cc54" class="team-img"></div>
-                <div class="team-info"><strong>Victoria Sosa</strong><small>Especialista en CRM</small></div>
-            </div>
-            <div class="kinetic-card">
-                <div class="team-img-box"><img src="https://i.ibb.co/11JKWjX/maxi-mazzei.jpg" class="team-img"></div>
-                <div class="team-info"><strong>Maximiliano Mazzei</strong><small>IA Generativa</small></div>
-            </div>
-            <div class="kinetic-card">
-                <div class="team-img-box"><img src="https://i.ibb.co/20jzGGjL/mingo.jpg" class="team-img"></div>
-                <div class="team-info"><strong>Maximiliano Mingo</strong><small>Director Creativo</small></div>
-            </div>
-            <div class="kinetic-card">
-                <div class="team-img-box"><img src="https://i.ibb.co/fzcSpYnM/IMG-6115.jpg" class="team-img"></div>
-                <div class="team-info"><strong>Carlos Gómez</strong><small>Realizador Audiovisual</small></div>
-            </div>
-            <div class="kinetic-card">
-                <div class="team-img-box"><img src="https://media.licdn.com/dms/image/v2/D4D03AQFA_JIyBUZvWg/profile-displayphoto-shrink_800_800/B4DZdAa3LsGYAs-/0/1749132474466?e=1769644800&v=beta&t=_9LQ958Jxa-HbA_exWGikt3xD6SBzwMDTh6b9bFP-nY" class="team-img"></div>
-                <div class="team-info"><strong>Guillermina Altamirano</strong><small>Gestora de Cuentas</small></div>
+            <div class="proposal-card" style="border-left: 4px solid var(--magenta);">
+                <div class="specialty-label">Confianza & Respaldo</div>
+                <h3>¿Por qué bi.lab?</h3>
+                <p>Porque tenemos <strong>trayectoria con resultados comprobables</strong> en venta digital consultiva de productos y servicios complejos.</p>
+                <p>No teorizamos sobre el marketing; implementamos sistemas donde nuestros resultados con clientes activos son nuestro mejor respaldo.</p>
             </div>
         </div>
-    </section>
 
-    <section class="clients-section">
-        <div class="full-width" style="margin-bottom: 30px; text-align: center;">
-            <h3 style="color: var(--text-dim); font-family: var(--font-main); text-transform: uppercase; letter-spacing: 2px; font-size: 1rem;">Confiaron en nosotros</h3>
-        </div>
-        <div class="marquee-container">
-            <div class="marquee-track">
-                <div class="logo-card-slide"><img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro"></div>
-                <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
-                <div class="logo-card-slide dark"><img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,h_54/https://remax-diagonal2.com.ar/wp-content/uploads/2021/02/logo-remax-diag2-menu.png" alt="Diagonal"></div>
-                <div class="logo-card-slide"><img src="https://static.tokkobroker.com/tfw_images/8635_Parodi%20Giaquinta%20Propiedades/PG_logo_BW.png" alt="Parodi"></div>
-                <div class="logo-card-slide"><img src="https://nqn3.com/galeria/fotos/2025/06/11/e_1749663063.jpg" alt="NQN3"></div>
-                <div class="logo-card-slide"><img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21"></div>
-                <div class="logo-card-slide dark"><img src="https://www.remax-chacras.com/wp-content/uploads//2023/08/logo-remax-chacras-bold.svg" alt="Chacras"></div>
-                <div class="logo-card-slide dark"><img src="https://www.zipcode.com.ar/assets/images/zipcode-logo-dark.svg" alt="Zipcode"></div>
-                <div class="logo-card-slide"><img src="https://urbano-inmobiliaria.com/web/assets/images/logo-308x73.png" alt="Urbano"></div>
-                <div class="logo-card-slide dark"><img src="https://i.ibb.co/5hBYRB6q/Recurso-1-1.png" alt="Mauro Croce"></div>
-                <div class="logo-card-slide dark"><img src="https://i.ibb.co/SXy6B28B/Logo-principal-variable01-Mesa-de-trabajo-1-1.png" alt="CODE"></div>
-                <div class="logo-card-slide"><img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe"></div>
-                <div class="logo-card-slide"><img src="https://i.ibb.co/zWTj2YzS/LOGO-REMAX-INVICTUS.png" alt="Remax Invictus"></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-wrapper" style="background: rgba(82, 65, 176, 0.05); overflow: hidden;">
-        <div class="full-width">
-            <div class="bubble-container" style="justify-content: flex-start;">
-                <div class="status-bubble" style="border-color: var(--violet); background: rgba(82, 65, 176, 0.1);">
-                    <span style="color: #fff;">Arquitectura de Resultados</span>
-                </div>
-            </div>
-            <h2 class="display-title">¿Qué es el <span class="gradient-text">Marketing de Performance?</span></h2>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: stretch; width: 100%;">
-            <div style="flex: 1.2; min-width: 300px;">
-                <p style="font-size: 1.4rem; line-height: 1.6; color: var(--cream); margin-bottom: 30px;">
-                    Es el motor especializado en la <strong>generación de leads</strong>. No se trata solo de visibilidad, sino de capturar interés real que alimente tu embudo de ventas.
-                </p>
-                <div style="padding: 25px; border-left: 3px solid var(--magenta); background: rgba(255,255,255,0.02); border-radius: 0 15px 15px 0;">
-                    <p style="color: var(--text-dim); font-size: 1.1rem; margin: 0;">
-                        "Un ecosistema dinámico y competitivo donde la tecnología actúa como el puente para escalar procesos comerciales con orden y precisión."
-                    </p>
-                </div>
-            </div>
-
-            <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div class="performance-card">
-                    <i class="fa-solid fa-gauge-high"></i>
-                    <span>Dinámico</span>
-                </div>
-                <div class="performance-card">
-                    <i class="fa-solid fa-trophy"></i>
-                    <span>Competitivo</span>
-                </div>
-                <div class="performance-card" style="grid-column: span 2;">
-                    <i class="fa-solid fa-microchip"></i>
-                    <span>Tecnología de Escalabilidad</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-wrapper">
-        <div class="full-width">
-            <div class="bubble-container" style="justify-content: flex-start;">
-                <div class="status-bubble" style="border-color: var(--gold); background: rgba(223, 214, 181, 0.1);">
-                    <span style="color: var(--gold);">El Ecosistema</span>
-                </div>
-            </div>
-            <h2 class="display-title">La Complejidad Detrás de un <span class="gradient-text">Lead Calificado.</span></h2>
-            <p style="font-size: 1.2rem; color: var(--text-dim); max-width: 800px; margin-bottom: 50px;">
-                Un trabajo profesional en generación de leads no es lineal; es un sistema de sub-especialidades que operan de forma coordinada pero independiente.
-            </p>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%;">
-            <div class="specialty-card">
-                <span class="specialty-tag">Profiling</span>
-                <i class="fa-solid fa-brain"></i>
-                <h3>Audiencias Psicográficas</h3>
-                <p>No segmentamos por datos demográficos básicos, sino por el <strong>"dolor"</strong>: miedos, deseos y necesidades latentes.</p>
-            </div>
-            <div class="specialty-card">
-                <span class="specialty-tag">Creativity</span>
-                <i class="fa-solid fa-palette"></i>
-                <h3>Creatividad de Alto Impacto</h3>
-                <p>Producimos piezas visuales diseñadas bajo hipótesis de conversión, enfocadas en activar la necesidad detectada.</p>
-            </div>
-            <div class="specialty-card">
-                <span class="specialty-tag">Paid Media</span>
-                <i class="fa-solid fa-tower-broadcast"></i>
-                <h3>Orquestación de Pauta</h3>
-                <p>Manejo táctico y técnico en <strong>Meta Ads</strong> y <strong>Google Ads</strong>, con incursiones estratégicas en TikTok.</p>
-            </div>
-            <div class="specialty-card">
-                <span class="specialty-tag">Data Architecture</span>
-                <i class="fa-solid fa-diagram-project"></i>
-                <h3>Arquitectura de CRM</h3>
-                <p>Estructuración de procesos en CRMs de venta consultiva para garantizar el orden y la trazabilidad absoluta.</p>
-            </div>
-            <div class="specialty-card" style="grid-column: span 1;">
-                <span class="specialty-tag">Cognitive Tech</span>
-                <i class="fa-solid fa-robot"></i>
-                <h3>Calificación con IA</h3>
-                <p>Implementación de Inteligencia Artificial para el filtrado semántico y seguimientos automáticos persistentes.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-wrapper" style="background: rgba(188, 101, 222, 0.02);">
-        <div class="full-width">
-            <div class="bubble-container" style="justify-content: flex-start;">
-                <div class="status-bubble" style="border-color: var(--violet); background: rgba(82, 65, 176, 0.1);">
-                    <span style="color: #fff;">Visión de Organización</span>
-                </div>
-            </div>
-            <h2 class="display-title">Preguntas que <span class="gradient-text">Jerárquicos</span> debe responder.</h2>
-            <p style="font-size: 1.3rem; max-width: 900px; color: var(--cream); margin-bottom: 30px;">
-                Más que encontrar respuestas rápidas, buscamos brindar una perspectiva que permita cuestionar el modelo actual para evolucionar hacia uno de alto rendimiento.
-            </p>
-        </div>
-
-        <div class="diagnostic-grid">
-            <div class="diagnostic-card">
-                <div class="diag-header"><i class="fa-solid fa-bullseye"></i> <h3>Publicidad e Impacto</h3></div>
-                <div class="diag-content">
-                    <ul>
-                        <li>¿Cómo construimos campañas de publicidad realmente efectivas de generación de leads?</li>
-                        <li>¿Contamos con la infraestructura de software necesaria para garantizar el éxito del escalado?</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="diagnostic-card" style="border-left-color: var(--gold);">
-                <div class="diag-header"><i class="fa-solid fa-handshake-simple"></i> <h3>Alineación de Equipos</h3></div>
-                <div class="diag-content">
-                    <ul>
-                        <li>¿Está el equipo comercial apto y capacitado para trabajar en sinergia técnica con el área de marketing?</li>
-                        <li>¿Existe una cultura de datos compartida entre ambos departamentos?</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="diagnostic-card">
-                <div class="diag-header"><i class="fa-solid fa-users-gear"></i> <h3>Gestión de Recursos</h3></div>
-                <div class="diag-content">
-                    <ul>
-                        <li>¿Debemos contratar especialistas internos o terciarizar en un proveedor de alta especialidad?</li>
-                        <li>¿Qué conocimientos técnicos críticos debe tener un partner externo para mitigar riesgos?</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="diagnostic-card" style="border-left-color: var(--gold);">
-                <div class="diag-header"><i class="fa-solid fa-shield-halved"></i> <h3>Stack Tecnológico</h3></div>
-                <div class="diag-content">
-                    <ul>
-                        <li>¿Debemos operar con un software único o integrar varios proveedores SAS?</li>
-                        <li>¿Qué riesgos de soberanía de datos asumimos si el software lo provee un tercero?</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-wrapper" style="text-align: center; border-bottom: none; padding-bottom: 150px;">
-        <div class="full-width">
-            <h2 class="display-title">Nuestra <span class="gradient-text">Propuesta de Consultoría.</span></h2>
-            <div class="kinetic-card" style="max-width: 850px; margin: 40px auto; padding: 60px; border: 2px solid var(--violet);">
-                <p style="font-size: 1.4rem; line-height: 1.8;">
-                    Nuestra misión es responder estos interrogantes. Brindamos la perspectiva global necesaria para que Jerárquicos tome decisiones con criterio en sus canales digitales.
-                </p>
-                <p style="margin-top: 30px; color: var(--gold); font-weight: 700; font-size: 1.2rem;">
-                    Trayectoria con resultados comprobables en venta digital de servicios complejos.
-                </p>
-            </div>
-            <div class="hero-links" style="justify-content: center;">
-                <a href="https://wa.me/5493424485582" target="_blank" class="hero-link-btn" style="background: var(--magenta); border: none; padding: 15px 40px; font-size: 1.1rem;">
-                    <i class="fa-brands fa-whatsapp"></i> Iniciar Consultoría
+        <div class="contact-cta-area">
+            <h2 class="display-title" style="font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 10px;">¿Conversamos sobre la consultoría?</h2>
+            <p style="color: var(--text-dim); font-size: 1.2rem;">Elegí el canal que prefieras para coordinar una reunión estratégica.</p>
+            
+            <div class="mega-buttons-grid">
+                <a href="https://wa.me/5493424485582" target="_blank" class="mega-btn btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                    <small>Chat directo con Dirección</small>
+                </a>
+                
+                <a href="https://www.instagram.com/wearebilab/" target="_blank" class="mega-btn btn-instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Instagram</span>
+                    <small>Mirá nuestra cultura</small>
+                </a>
+                
+                <a href="https://bilabagency.com" target="_blank" class="mega-btn btn-web">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>Sitio Web</span>
+                    <small>bilabagency.com</small>
                 </a>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 40px; text-align: center; opacity: 0.5; font-size: 0.8rem;">
+    <footer style="padding: 60px 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05);">
         &copy; 2026 bi.lab | Business Intelligence & Growth Laboratory.
+        <br><small style="margin-top: 10px; display: block;">Santa Fe, Argentina para el mundo.</small>
     </footer>
 
     <script>
